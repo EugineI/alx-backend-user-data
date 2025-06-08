@@ -35,7 +35,6 @@ class DB:
         self._session.add(new_user)
         self._session.flush()
         self._session.commit()
-        print(f"DB.add_user returns a user object: {isinstance(new_user, User)}")
         return new_user
 
     def find_user_by(self, **kwargs) -> User:
@@ -62,4 +61,3 @@ class DB:
             setattr(user, key, value)
 
         self._session.commit()
-        print("user has been successfully updated")
