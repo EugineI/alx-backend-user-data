@@ -4,6 +4,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import Session
+om sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.exc import InvalidRequestError
 
 from user import Base, User
 
@@ -30,6 +32,7 @@ class DB:
         """Add a new user to the database"""
         new_user = User(email=email, hashed_password=hashed_password)
         self._session.add(new_user)
+        self._session.flush()
         self._session.commit()
         return new_user
 
@@ -40,6 +43,7 @@ class DB:
 
         try:
             user = self._session.query(User).filter_by(**kwargs).one()
+            print("found the existing user!")
             return user
         except NoResultFound:
             raise NoResultFound
@@ -56,3 +60,4 @@ class DB:
             setattr(user, key, value)
 
         self._session.commit()
+        print("user has been successfully updated")
