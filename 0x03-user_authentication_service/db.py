@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """ Database module"""
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
