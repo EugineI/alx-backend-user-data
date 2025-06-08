@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
+""" defines an sqlalchemy model, user"""
+
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String
-""" defines an sqlalchemy model, user"""
 Base = declarative_base()
 
 
